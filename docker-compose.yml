@@ -1,6 +1,6 @@
 version: "3"
 services:
-  banco:
+  shadow_db:
     image: postgres
     container_name: shadow_db
     ports:
@@ -8,11 +8,11 @@ services:
     env_file:
       - .env
     volumes:
-      - volume_banco:/var/lib/postgresql/data
+      - shadow_db:/var/lib/postgresql/data
 
-  app_node:
+  fcs:
     build: .
-    container_name: app_node
+    container_name: fcs
     ports:
       - 5000:5000
     env_file:
@@ -20,10 +20,10 @@ services:
     volumes:
       - .:/usr/src
       - /usr/src/node_modules
-    entrypoint: dockerize -wait tcp://banco:5432 -timeout 20s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://shadow_db:5432 -timeout 20s docker-entrypoint.sh
     command: "npm run dev"
     depends_on:
-      - banco
+      - shadow_db
 
 volumes:
-  volume_banco:
+  shadow_db:

@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:15
 
 WORKDIR /usr/src
 
@@ -7,7 +7,7 @@ COPY . .
 EXPOSE 5000
 
 RUN npm i
-RUN npx prisma generate
+RUN npx prisma db pull
 
 RUN apt-get update && apt-get install -y wget
 

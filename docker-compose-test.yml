@@ -1,17 +1,17 @@
 version: "3"
 services:
-  banco:
+  fcs_db_test:
     image: postgres
-    container_name: banco
+    container_name: fcs_db_test
     env_file:
       - .env.test
 
-  app_node:
+  fcs:
     build: .
-    container_name: app_node
+    container_name: fcs
     env_file:
       - .env.test
-    entrypoint: dockerize -wait tcp://banco:5432 -timeout 20s docker-entrypoint.sh
-    command: "npm run test"
+    entrypoint: dockerize -wait tcp://fcs_db_test:5432 -timeout 20s docker-entrypoint.sh
+    command: "npm run dev"
     depends_on:
-      - banco
+      - fcs_db_test

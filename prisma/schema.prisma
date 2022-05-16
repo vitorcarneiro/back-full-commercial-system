@@ -1,0 +1,244 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model adress {
+  id         Int        @id @default(autoincrement())
+  cep        String
+  address    String
+  number     String
+  city       String
+  complement String?
+  created_at DateTime   @default(now()) @db.Timestamp(6)
+  shipper    shipper[]
+  supplier   supplier[]
+}
+
+model brand {
+  id         Int       @id @default(autoincrement())
+  name       String
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  product    product[]
+}
+
+model invoice {
+  id                    Int               @id @default(autoincrement())
+  access_key            String?
+  supplier_id           Int
+  products_cost         Int
+  total_cost            Int?
+  installments_quantity Int
+  salesperson_id        Int?
+  created_at            DateTime          @default(now()) @db.Timestamp(6)
+  supplier              supplier          @relation(fields: [supplier_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  invoice_info          invoice_info[]
+  payment               payment[]
+  product_invoice       product_invoice[]
+}
+
+model invoice_info {
+  id              Int      @id @default(autoincrement())
+  invoice_id      Int
+  number          String
+  serie           String?
+  ipi             Int      @default(0)
+  icms            Int      @default(0)
+  fcp             Int      @default(0)
+  shipping        Int      @default(0)
+  shipper_id      Int?
+  discount        Int      @default(0)
+  issue_date      DateTime @db.Date
+  others_expenses Int      @default(0)
+  obs             String
+  created_at      DateTime @default(now()) @db.Timestamp(6)
+  invoice         invoice  @relation(fields: [invoice_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  shipper         shipper? @relation(fields: [shipper_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model measurement_relation {
+  id             Int      @id @default(autoincrement())
+  product_id     Int
+  unit1_name     String
+  unit1_quantity Int
+  unit2_name     String
+  unit2_quantity Int
+  created_at     DateTime @default(now()) @db.Timestamp(6)
+  modified_at    DateTime @default(now()) @db.Timestamp(6)
+  product        product  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "measurement_relation_prduct_id_fkey")
+}
+
+model payment {
+  id                 Int      @id @default(autoincrement())
+  invoice_id         Int
+  value              Int
+  due_date           DateTime @db.Date
+  installment_number Int      @default(1)
+  bank_description   String?
+  obs                String?
+  created_at         DateTime @default(now()) @db.Timestamp(6)
+  invoice            invoice  @relation(fields: [invoice_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model product {
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  sale_price           Int
+  sku                  String                 @unique
+  barcode              String?
+  measurement_unit     String
+  allowed_fraction     Boolean                @default(false)
+  category_id          Int?
+  subcategory_id       Int?
+  changed_by           Int?
+  brand_id             Int
+  allowed_price_change Boolean                @default(false)
+  created_at           DateTime               @default(now()) @db.Timestamp(6)
+  modified_at          DateTime               @default(now()) @db.Timestamp(6)
+  brand                brand                  @relation(fields: [brand_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product_category     product_category?      @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  user                 user?                  @relation(fields: [changed_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product_subcategory  product_subcategory?   @relation(fields: [subcategory_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  measurement_relation measurement_relation[]
+  product_info         product_info[]
+  product_inventory    product_inventory[]
+  product_invoice      product_invoice[]
+  product_key_word     product_key_word[]
+}
+
+model product_category {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  created_at          DateTime              @default(now()) @db.Timestamp(6)
+  modified_at         DateTime              @default(now()) @db.Timestamp(6)
+  product             product[]
+  product_subcategory product_subcategory[]
+}
+
+model product_info {
+  id               Int     @id @default(autoincrement())
+  product_id       Int
+  description      String?
+  image_path       String?
+  gross_weight     Int?
+  location         String?
+  net_weight       Int?
+  ncm              String?
+  cest             String?
+  tributation_code String?
+  product          product @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model product_inventory {
+  id               Int      @id @default(autoincrement())
+  quantity         Int?
+  monthly_quantity Int?
+  min_quantity     Int?     @default(2)
+  measurement_unit String
+  created_at       DateTime @default(now()) @db.Timestamp(6)
+  modified_at      DateTime @default(now()) @db.Timestamp(6)
+  product_id       Int
+  product          product  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model product_invoice {
+  id               Int      @id @default(autoincrement())
+  product_name     String
+  product_id       Int
+  invoice_id       Int
+  quantity         Int
+  measurement_unit String
+  net_cost         Int      @default(0)
+  gross_cost       Int?
+  icms             Int      @default(0)
+  ipi              Int      @default(0)
+  fcp              Int      @default(0)
+  shipping         Int      @default(0)
+  others_expenses  Int      @default(0)
+  ncm              String?
+  cest             String?
+  shipping_cost    Int      @default(0)
+  supplier_code    String?
+  min_quantity     Int      @default(1)
+  created_at       DateTime @default(now()) @db.Timestamp(6)
+  invoice          invoice  @relation(fields: [invoice_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product          product  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model product_key_word {
+  id         Int      @id @default(autoincrement())
+  name       String
+  product_id Int
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  product    product  @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model product_subcategory {
+  id               Int              @id @default(autoincrement())
+  name             String
+  category_id      Int
+  created_at       DateTime         @default(now()) @db.Timestamp(6)
+  product_category product_category @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  product          product[]
+}
+
+model salesperson {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique
+  phone_number String?
+  supplier_id  Int
+  created_at   DateTime @default(now()) @db.Timestamp(6)
+  supplier     supplier @relation(fields: [supplier_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model shipper {
+  id               Int            @id @default(autoincrement())
+  cnpj             String         @db.Char(14)
+  company_name     String?
+  trade_name       String
+  state_code       String?
+  state_code_subst String?
+  type             String?
+  uf               String?
+  phone_number     String?
+  email            String?
+  adress_id        Int?
+  created_at       DateTime       @default(now()) @db.Timestamp(6)
+  modified_at      DateTime       @default(now()) @db.Timestamp(6)
+  adress           adress?        @relation(fields: [adress_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  invoice_info     invoice_info[]
+}
+
+model supplier {
+  id                       Int           @id @default(autoincrement())
+  cnpj                     String        @db.Char(14)
+  company_name             String?
+  trade_name               String
+  state_registration       String?
+  state_registration_subst String?
+  type                     String?
+  uf                       String?
+  phone_number             String?
+  email                    String?
+  created_at               DateTime      @default(now()) @db.Timestamp(6)
+  adress_id                Int?
+  modified_at              DateTime      @default(now()) @db.Timestamp(6)
+  adress                   adress?       @relation(fields: [adress_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  invoice                  invoice[]
+  salesperson              salesperson[]
+}
+
+model user {
+  id         Int       @id @default(autoincrement())
+  email      String    @unique
+  cpf        String    @unique @db.Char(11)
+  password   String
+  full_name  String
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  product    product[]
+}

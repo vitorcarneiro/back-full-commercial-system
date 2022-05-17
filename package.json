@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "npx prisma migrate dev && nodemon src/server.ts",
     "dev:test": "npx prisma migrate dev && dotenv -e .env.test nodemon src/server.ts",
     "test": "npx prisma migrate dev && NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",

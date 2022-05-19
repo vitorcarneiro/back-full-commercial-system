@@ -1,7 +1,7 @@
 version: "3"
 services:
   fcs_db_test:
-    image: postgres
+    image: postgres:latest
     container_name: fcs_db_test
     env_file:
       - .env.test

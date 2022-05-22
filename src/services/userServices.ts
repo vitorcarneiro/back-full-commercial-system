@@ -23,3 +23,11 @@ function hashPassword(password: string) {
 export async function readAll() {
   return await userRepo.findMany();
 }
+
+export async function findByCpf(cpf: string) {
+  return await userRepo.findByCpf(cpf);
+}
+
+export async function findByEmail(email: string) {
+  return await userRepo.findByEmail(email);
+}

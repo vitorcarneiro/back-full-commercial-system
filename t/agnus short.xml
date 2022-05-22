@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"><NFe><infNFe Id="NFe33211273549313000177550010003549591014590340" versao="4.00"><ide><cUF>33</cUF><cNF>01459034</cNF><natOp>REVENDA NO RJ</natOp><mod>55</mod><serie>1</serie><nNF>354959</nNF><dhEmi>2021-12-02T16:49:37-03:00</dhEmi><tpNF>1</tpNF><idDest>1</idDest><cMunFG>3303302</cMunFG><tpImp>2</tpImp><tpEmis>1</tpEmis><cDV>0</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe><indFinal>0</indFinal><indPres>1</indPres><procEmi>0</procEmi><verProc>V2.290</verProc></ide><emit><CNPJ>73549313000177</CNPJ><xNome>FORNECEDORA AGNUS FERRAGENS LTDA</xNome><enderEmit><xLgr>RODOVIA AMARAL PEIXOTO 3670</xLgr><nro>01</nro><xBairro>SANTA BARBARA</xBairro><cMun>3303302</cMun><xMun>NITEROI</xMun><UF>RJ</UF><CEP>24141330</CEP><cPais>1058</cPais><xPais>Brasil</xPais><fone>2126277888</fone></enderEmit><IE>85126954</IE><CRT>3</CRT></emit><dest><CNPJ>32875862000154</CNPJ><xNome>VGD MAT DE CONST EIRELI-018795</xNome><enderDest><xLgr>R HIPOLITO 468</xLgr><nro>01</nro><xBairro>VILA EMIL</xBairro><cMun>3302858</cMun><xMun>MESQUITA</xMun><UF>RJ</UF><CEP>26580050</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>2135893790</fone></enderDest><indIEDest>1</indIEDest><IE>11374450</IE><email>meuvelhoconstrucao@gmail.com</email></dest><det nItem="1"><prod><cProd>4763</cProd><cEAN>SEM GTIN</cEAN><xProd>* BALDE P/ OBRA PVC 12 LITROS COMUM</xProd><NCM>39239000</NCM><cBenef>RJ802312</cBenef><CFOP>5102</CFOP><uCom>PC</uCom><qCom>25.0000</qCom><vUnCom>6.8900000000</vUnCom><vProd>172.25</vProd><cEANTrib>SEM GTIN</cEANTrib><uTrib>PC</uTrib><qTrib>25.0000</qTrib><vUnTrib>6.8900000000</vUnTrib><indTot>1</indTot></prod><imposto><vTotTrib>0.00</vTotTrib><ICMS><ICMS20><orig>0</orig><CST>20</CST><modBC>3</modBC><pRedBC>30.00</pRedBC><vBC>120.57</vBC><pICMS>18.00</pICMS><vICMS>21.70</vICMS><vBCFCP>120.57</vBCFCP><pFCP>2.00</pFCP><vFCP>2.41</vFCP><vICMSDeson>12.92</vICMSDeson><motDesICMS>9</motDesICMS></ICMS20></ICMS><IPI><cEnq>999</cEnq><IPITrib><CST>99</CST><vBC>0.00</vBC><pIPI>0.00</pIPI><vIPI>0.00</vIPI></IPITrib></IPI><PIS><PISAliq><CST>01</CST><vBC>172.25</vBC><pPIS>1.65</pPIS><vPIS>2.84</vPIS></PISAliq></PIS><COFINS><COFINSAliq><CST>01</CST><vBC>172.25</vBC><pCOFINS>7.60</pCOFINS><vCOFINS>13.09</vCOFINS></COFINSAliq></COFINS></imposto><infAdProd>BC = 120,57 % FCP = 2,00 % VALOR FCP = 2,41</infAdProd></det><total><ICMSTot><vBC>120.57</vBC><vICMS>21.70</vICMS><vICMSDeson>12.92</vICMSDeson><vFCP>2.41</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>0.00</vFCPST><vFCPSTRet>0.00</vFCPSTRet><vProd>172.25</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>0.00</vDesc><vII>0.00</vII><vIPI>0.00</vIPI><vIPIDevol>0.00</vIPIDevol><vPIS>2.84</vPIS><vCOFINS>13.09</vCOFINS><vOutro>0.00</vOutro><vNF>172.25</vNF><vTotTrib>0.00</vTotTrib></ICMSTot></total><transp><modFrete>0</modFrete><transporta><CNPJ>10474139000120</CNPJ><xNome>TAF LOGISTICA TRANSPORTES LTDA</xNome><IE>78704144</IE><xEnder>RUA JORNALISTA SERGIO PORTO S/ N, LOTE551 QUADRA N - SANTA B</xEnder><xMun>NITEROI</xMun><UF>RJ</UF></transporta><vol><qVol>0</qVol><pesoL>12.125</pesoL><pesoB>12.125</pesoB></vol></transp><cobr><fat><nFat>001/0354959-N</nFat><vOrig>172.25</vOrig><vDesc>0.00</vDesc><vLiq>172.25</vLiq></fat><dup><nDup>001</nDup><dVenc>2022-01-01</dVenc><vDup>86.12</vDup></dup><dup><nDup>002</nDup><dVenc>2022-01-31</dVenc><vDup>86.13</vDup></dup></cobr><pag><detPag><tPag>15</tPag><vPag>86.12</vPag></detPag><detPag><tPag>15</tPag><vPag>86.13</vPag></detPag></pag><infAdic><infCpl>NUMERO PEDIDO 527680  Reclamacoes em 48hs (21) 2627-7888  CST 070 c\ cobranca de S.T. e reducao na  Base de Calculo  Base de calculo do ICMS reduzida nos termos do artigo 1o do Decreto 36.453 de 29/10/2004  TRATAMENTO TRIB. DIFERENCIADO concedido mediante processo administrativo  E-11/30.212/2009  End. entrega: R HIPOLITO 468 VILA EMIL  MESQUITA RJ 26580-050  VALOR FCP ST  VALOR FCP 2,41</infCpl></infAdic></infNFe><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#NFe33211273549313000177550010003549591014590340"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>zGH2WMUsY56Aa4LvObgJfCPJRvk=</DigestValue></Reference></SignedInfo><SignatureValue>fDirSR8Bv7RFtL6uW3+qlJvPW1Ewc9WuwzWEv0xcHwlvTNLAgFoUUuTjCxf58EuF5H+bvucXzDh2
+mahAZOkDSaL3mF/IyWItWeblUcKYhCw/1zIaGRoRVaAm0iXB8QbkfmBs4HKgln1L/t0eBsu+nAfW
+F1ytDDcThK0c/tx8OEm6a48eHyQVXe1tXm+r29wju20gRGLIfdrejeX1HMzbJCpa6IGEZIKcI9HD
+XV6qNuAcdPC+9Vr3nCJkhGk7xg7ZzwzWibpm6qGCWcbSd3QyA1u3mQcQ7H/FVluve5GnIMN702Sk
+JFBxTsJNeW+0kyLFH/SsJ01onTDcOAjpMBneFg==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIHVDCCBTygAwIBAgIIQEEhCQI485gwDQYJKoZIhvcNAQELBQAwWTELMAkGA1UEBhMCQlIxEzAR
+BgNVBAoTCklDUC1CcmFzaWwxFTATBgNVBAsTDEFDIFNPTFVUSSB2NTEeMBwGA1UEAxMVQUMgU09M
+VVRJIE11bHRpcGxhIHY1MB4XDTIxMDkwOTEzMDcwMFoXDTIyMDkwOTEzMDcwMFowge0xCzAJBgNV
+BAYTAkJSMRMwEQYDVQQKEwpJQ1AtQnJhc2lsMQswCQYDVQQIEwJSSjEXMBUGA1UEBxMOUmlvIGRl
+IEphbmVpcm8xHjAcBgNVBAsTFUFDIFNPTFVUSSBNdWx0aXBsYSB2NTEXMBUGA1UECxMOMjM0NjYy
+NDUwMDAxMDQxEzARBgNVBAsTClByZXNlbmNpYWwxGjAYBgNVBAsTEUNlcnRpZmljYWRvIFBKIEEx
+MTkwNwYDVQQDEzBGT1JORUNFRE9SQSBBR05VUyBGRVJSQUdFTlMgTFREQS46NzM1NDkzMTMwMDAx
+NzcwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCBA70BXbLs5xitkNNhvFYm98nlW6eR
+gf3buv7pj9Gyf8Hfvb4tUoqK2j68sakVhL35tc2reuwXeMouAWMybCNlAx/0XpOnAEt9j4MOSzK2
+RSqj1QsHdPztA66WKbO/Lto7l7ZZySlLhS2d/Ku1sCA3wW8E/qPfRWWKyWGPT1uQWp2xTpWWXQf/
+UfronnE3TRThWbZxpirIvh5evE/cyWCTrLmWTzX9ec1xTbSjoAwfXk5hQAkR5k4kW5bQ68CoTBYT
+xeV0OZCI7o0mcWjBD1gzDLA+gzUrVhXXA7qD1j9sGRl84PJE4dW/F5kPDBmRw6wSgeEmvM+GIyQ3
+zFJQ9W9/AgMBAAGjggKJMIIChTAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFMVS7SWACd+cgsifR8bd
+tF8x3bmxMFQGCCsGAQUFBwEBBEgwRjBEBggrBgEFBQcwAoY4aHR0cDovL2NjZC5hY3NvbHV0aS5j
+b20uYnIvbGNyL2FjLXNvbHV0aS1tdWx0aXBsYS12NS5wN2IwgcQGA1UdEQSBvDCBuYEgcGhpbGlw
+cGVAZm9ybmVjZWRvcmFhZ251cy5jb20uYnKgJwYFYEwBAwKgHhMcQ0FSTE9TIFBBVUxPIERFIFNP
+VVpBIEpVTklPUqAZBgVgTAEDA6AQEw43MzU0OTMxMzAwMDE3N6A4BgVgTAEDBKAvEy0yMDA1MTk2
+Nzk2MDA2NDM5NzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDCgFwYFYEwBAwegDhMMMDAwMDAw
+MDAwMDAwMF0GA1UdIARWMFQwUgYGYEwBAgEmMEgwRgYIKwYBBQUHAgEWOmh0dHA6Ly9jY2QuYWNz
+b2x1dGkuY29tLmJyL2RvY3MvZHBjLWFjLXNvbHV0aS1tdWx0aXBsYS5wZGYwHQYDVR0lBBYwFAYI
+KwYBBQUHAwIGCCsGAQUFBwMEMIGMBgNVHR8EgYQwgYEwPqA8oDqGOGh0dHA6Ly9jY2QuYWNzb2x1
+dGkuY29tLmJyL2xjci9hYy1zb2x1dGktbXVsdGlwbGEtdjUuY3JsMD+gPaA7hjlodHRwOi8vY2Nk
+Mi5hY3NvbHV0aS5jb20uYnIvbGNyL2FjLXNvbHV0aS1tdWx0aXBsYS12NS5jcmwwHQYDVR0OBBYE
+FC4CRuSIj2qokL4djtMgVoer6VTnMA4GA1UdDwEB/wQEAwIF4DANBgkqhkiG9w0BAQsFAAOCAgEA
+V1Uzj4kvZ4zcbpbuQowvZiW/dt6AfcAMal9NLqkfHmpTRF1MSBE/OFHL9iO3rzorRU4tPVNNxKNq
+HJd/t+x4R+PnxrA3jnnqQhwXwId6+9JvZQDPd+PkA7fJmyEOcpbk1bi+o6BUXwHjpyfxANU3p9u8
+PyURSkK5WKAFx24cmp3e+4/Qj6VOAItaX3LfSkNzzlFHJwJ2/BoZtA0OFlztgKCne7SW1JL/V6Lg
+j2OlY/hqiaJ1zrT5BECio4Upl7oZ/KedYOBqk39G2mhRiO0z00pIMlJ1fsveb4ZxVAaicMxoBpfW
+cIqsY789oFBfW4QTyubeT/wX8quzoUAg9RV/LYdY5a3QP4yBwwVwtDVtrzdAxuJvX9uVuYIcLAyv
+ZwCdqx1vKjcEGrH++1zdPYnkdRj325KxhUsnwMsybCWM46eO4B9h7qP9YdADGXTw88khXBna5l2b
+6F3QM32aE1VALIaEeflBVEv5EmyT3hToKmtjOLVUxfDhLu+tV5sX116XIU4CX5szi7x3ek+481hR
+CePGzuch4i8P6NOpimZhsc5X/Fd246KmZkiQ9l7vk7Ke40UuUb8uXkff8SBkBvYSqFM5ppdywnLb
+Nuv3dwvc8BL2XKMIbYY8jS1sz46+U/XU+0sGH1MbrSH1TqVscVw4ks90Nj1NxX1H4LY9sM9MZkY=</X509Certificate></X509Data></KeyInfo></Signature></NFe><protNFe versao="4.00">
+        <infProt>
+            <tpAmb>1</tpAmb>
+            <verAplic>SVRS202111191436</verAplic>
+            <chNFe>33211273549313000177550010003549591014590340</chNFe>
+            <dhRecbto>2021-12-02T16:49:38-03:00</dhRecbto>
+            <nProt>333210203816345</nProt>
+            <digVal>zGH2WMUsY56Aa4LvObgJfCPJRvk=</digVal>
+            <cStat>100</cStat>
+            <xMotivo>Autorizado o uso da NF-e</xMotivo>
+        </infProt>
+    </protNFe></nfeProc>

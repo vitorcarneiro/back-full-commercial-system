@@ -10,8 +10,14 @@ export async function create(req: Request, res: Response) {
   res.send("user created").status(201);
 }
 
-export async function readAll(req: Request, res: Response) {
-  const users = await userService.readAll();
+export async function read(req: Request, res: Response) {
+  let users: userRepo.UserData | userRepo.UserData[];
+
+  if (typeof req.query.cpf === "string")
+    users = await userService.findByCpf(req.query.cpf);
+  else if (typeof req.query.email === "string")
+    users = await userService.findByEmail(req.query.email);
+  else users = await userService.readAll();
 
   res.send(users);
 }

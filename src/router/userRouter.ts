@@ -11,8 +11,6 @@ userRouter.post(
   userController.create
 );
 
-userRouter.get("/", userController.readAll);
-
-userRouter.get("/:cpf", userController.readAll);
+userRouter.get("/", userController.read);
 
 export default userRouter;

@@ -2,7 +2,7 @@ import { User } from "@prisma/client";
 import { prisma } from "../database.js";
 
 export type CreateUserData = Omit<User, "id" | "created_at">;
-export type UserData = Omit<CreateUserData, "password">;
+export type UserData = Omit<User, "password">;
 
 export async function insert(createUserData: CreateUserData) {
   await prisma.user.create({

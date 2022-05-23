@@ -11,9 +11,11 @@ datasource db {
 model Address {
   id         Int        @id @default(autoincrement())
   cep        String
+  country    String
+  state      String
+  city       String
   address    String
   number     String
-  city       String
   complement String?
   created_at DateTime   @default(now()) @db.Timestamp(6)
   shipper    Shipper[]
@@ -226,7 +228,7 @@ model Salesperson {
 
 model Shipper {
   id               Int            @id @default(autoincrement())
-  cnpj             String         @db.Char(14)
+  cnpj             String         @unique @db.Char(14)
   company_name     String?
   trade_name       String
   state_code       String?
@@ -246,13 +248,12 @@ model Shipper {
 
 model Supplier {
   id                       Int           @id @default(autoincrement())
-  cnpj                     String        @db.Char(14)
+  cnpj                     String        @unique @db.Char(14)
   company_name             String?
-  trade_name               String
+  trade_name               String?
   state_registration       String?
   state_registration_subst String?
   type                     String?
-  uf                       String?
   phone_number             String?
   email                    String?
   created_at               DateTime      @default(now()) @db.Timestamp(6)

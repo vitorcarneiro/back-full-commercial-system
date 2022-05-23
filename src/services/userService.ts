@@ -48,6 +48,13 @@ export async function signUp(createUserData: userRepo.CreateUserData) {
   await userRepo.insert({ ...createUserData, password: hashedPassword });
 }
 
+export async function findById(id: number) {
+  const user = await userRepo.findById(id);
+  if (!user) throw error.notFound("User not found");
+
+  return user;
+}
+
 export type LoginData = {
   login: string;
   password: string;

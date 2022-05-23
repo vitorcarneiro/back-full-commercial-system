@@ -1,6 +1,6 @@
 import joi from "joi";
 import { CreateUserData } from "./../repositories/userRepo.js";
-import { LoginData } from "../services/userServices.js";
+import { LoginData } from "../services/userService.js";
 
 export const userSchema = joi.object<CreateUserData>({
   email: joi.string().email({ minDomainSegments: 2 }).required(),

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.js";
+import { ensureAuthenticatedMiddleware } from "../middlewares/ensureAuthenticatedMiddleware.js";
 import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware.js";
 import { userSchema, loginSchema } from "../schemas/userSchemas.js";
 
@@ -17,6 +18,6 @@ userRouter.post(
   userController.signIn
 );
 
-userRouter.get("/", userController.show);
+userRouter.get("/", ensureAuthenticatedMiddleware, userController.show);
 
 export default userRouter;

@@ -1,16 +1,22 @@
 import { Router } from "express";
 import * as userController from "../controllers/userController.js";
 import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware.js";
-import { userSchema } from "../schemas/userSchemas.js";
+import { userSchema, loginSchema } from "../schemas/userSchemas.js";
 
 const userRouter = Router();
 
 userRouter.post(
-  "/",
+  "/sign-up",
   validateSchemaMiddleware(userSchema),
-  userController.create
+  userController.signUp
 );
 
-userRouter.get("/", userController.read);
+userRouter.post(
+  "/sign-in",
+  validateSchemaMiddleware(loginSchema),
+  userController.signIn
+);
+
+userRouter.get("/", userController.show);
 
 export default userRouter;

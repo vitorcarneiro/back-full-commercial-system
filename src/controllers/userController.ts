@@ -2,15 +2,23 @@ import { Request, Response } from "express";
 import * as userService from "../services/userServices.js";
 import * as userRepo from "../repositories/userRepo.js";
 
-export async function create(req: Request, res: Response) {
+export async function signUp(req: Request, res: Response) {
   const user: userRepo.CreateUserData = req.body;
 
-  await userService.create(user);
+  await userService.signUp(user);
 
   res.send("user created").status(201);
 }
 
-export async function read(req: Request, res: Response) {
+export async function signIn(req: Request, res: Response) {
+  const user = req.body;
+
+  const token = await userService.signIn(user);
+
+  res.send({ token });
+}
+
+export async function show(req: Request, res: Response) {
   let users: userRepo.UserData | userRepo.UserData[];
 
   if (typeof req.query.cpf === "string")

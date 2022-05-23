@@ -1,6 +1,6 @@
 import { decode } from "js-base64";
 import { parseString } from "xml2js";
-import * as supplierService from "../services/supplierService.js";
+// import * as supplierService from "../services/supplierService.js";
 
 export async function registerInvoiceByXml(xmlBase64: string) {
   const xml = decode(xmlBase64);
@@ -12,9 +12,9 @@ export async function registerInvoiceByXml(xmlBase64: string) {
 
   const invoice = mapInvoiceJson(xmlJson);
 
-  const supplier = await supplierService.registerSupplierByInvoice(
-    invoice.issuer
-  );
+  // const supplier = await supplierService.registerSupplierByInvoice(
+  //   invoice.issuer
+  // );
 
   return invoice;
 }

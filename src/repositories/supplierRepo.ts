@@ -1,5 +1,5 @@
-import { Supplier } from "@prisma/client";
 import { prisma } from "../database.js";
+import { Supplier } from "@prisma/client";
 
 export type CreateSupplierData = Omit<
   Supplier,
@@ -8,7 +8,7 @@ export type CreateSupplierData = Omit<
 export type SupplierData = Omit<CreateSupplierData, "password">;
 
 export async function insert(createSupplierData: CreateSupplierData) {
-  await prisma.supplier.create({
+  return await prisma.supplier.create({
     data: createSupplierData,
   });
 }

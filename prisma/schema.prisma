@@ -14,6 +14,7 @@ model Address {
   country    String
   state      String
   city       String
+  district   String
   address    String
   number     String
   complement String?
@@ -35,7 +36,7 @@ model Brand {
 
 model Invoice {
   id                    Int               @id @default(autoincrement())
-  access_key            String?
+  access_key            String            @unique
   supplier_id           Int
   products_cost         Int
   total_cost            Int?
@@ -56,14 +57,14 @@ model Invoice_info {
   number          String
   serie           String?
   ipi             Int      @default(0)
-  icms            Int      @default(0)
-  fcp             Int      @default(0)
+  icms_st         Int      @default(0)
+  fcp_st          Int      @default(0)
   shipping        Int      @default(0)
   shipper_id      Int?
   discount        Int      @default(0)
-  issue_date      DateTime @db.Date
   others_expenses Int      @default(0)
-  obs             String
+  issue_date      String
+  obs             String?
   created_at      DateTime @default(now()) @db.Timestamp(6)
   invoice         Invoice  @relation(fields: [invoice_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   shipper         Shipper? @relation(fields: [shipper_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -252,7 +253,6 @@ model Supplier {
   company_name             String?
   trade_name               String?
   state_registration       String?
-  state_registration_subst String?
   type                     String?
   phone_number             String?
   email                    String?

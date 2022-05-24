@@ -1,8 +1,11 @@
 import { decode } from "js-base64";
 import { parseString } from "xml2js";
-// import * as supplierService from "../services/supplierService.js";
+import * as supplierRepo from "../repositories/supplierRepo.js";
+import * as invoiceRepo from "../repositories/invoiceRepo.js";
+import * as supplierService from "../services/supplierService.js";
+import * as error from "../utils/errorUtils.js";
 
-export async function registerInvoiceByXml(xmlBase64: string) {
+export async function invoiceByXml(xmlBase64: string) {
   const xml = decode(xmlBase64);
   let xmlJson: Object;
 
@@ -11,10 +14,6 @@ export async function registerInvoiceByXml(xmlBase64: string) {
   });
 
   const invoice = mapInvoiceJson(xmlJson);
-
-  // const supplier = await supplierService.registerSupplierByInvoice(
-  //   invoice.issuer
-  // );
 
   return invoice;
 }
@@ -73,63 +72,83 @@ function mapInvoiceJson(invoice: any) {
         invoice.nfeProc.NFe[0].infNFe[0].dest[0].indIEDest[0],
     },
     totals: {
-      icms: {
-        baseTax: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vBC[0]
-        ),
-        icmsAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vICMS[0]
-        ),
-        icmsExemptAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vICMSDeson[0]
-        ),
-        stCalculationBasisAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vBCST[0]
-        ),
-        stAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vST[0]
-        ),
-        productAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vProd[0]
-        ),
-        freightAmount: stringToNumberCents(
+      amount: stringToNumberCents(
+        invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vNF[0]
+      ),
+      productAmount: stringToNumberCents(
+        invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vProd[0]
+      ),
+      taxes: {
+        icms: {
+          baseTax: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vBC[0]
+          ),
+          icmsAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vICMS[0]
+          ),
+          icmsExemptAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vICMSDeson[0]
+          ),
+          stCalculationBasisAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vBCST[0]
+          ),
+          stAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vST[0]
+          ),
+        },
+        ii: {
+          amount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vII[0]
+          ),
+        },
+        ipi: {
+          amount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vIPI[0]
+          ),
+          devolAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vIPIDevol[0]
+          ),
+        },
+        pis: {
+          amount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vPIS[0]
+          ),
+        },
+        cofins: {
+          amount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vCOFINS[0]
+          ),
+        },
+        fcp: {
+          amount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCP[0]
+          ),
+          stAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCPST[0]
+          ),
+          stRetAmount: stringToNumberCents(
+            invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCPSTRet[0]
+          ),
+        },
+      },
+      freight: {
+        amount: stringToNumberCents(
           invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFrete[0]
         ),
-        insuranceAmount: stringToNumberCents(
+      },
+      insurance: {
+        amount: stringToNumberCents(
           invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vSeg[0]
         ),
-        discountAmount: stringToNumberCents(
+      },
+      discount: {
+        amount: stringToNumberCents(
           invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vDesc[0]
         ),
-        iiAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vII[0]
-        ),
-        ipiAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vIPI[0]
-        ),
-        pisAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vPIS[0]
-        ),
-        cofinsAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vCOFINS[0]
-        ),
-        othersAmount: stringToNumberCents(
+      },
+      others: {
+        amount: stringToNumberCents(
           invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vOutro[0]
-        ),
-        invoiceAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vNF[0]
-        ),
-        fcpAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCP[0]
-        ),
-        fcpstAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCPST[0]
-        ),
-        fcpstRetAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vFCPSTRet[0]
-        ),
-        ipiDevolAmount: stringToNumberCents(
-          invoice.nfeProc.NFe[0].infNFe[0].total[0].ICMSTot[0].vIPIDevol[0]
         ),
       },
       transport: {
@@ -245,4 +264,48 @@ function mapIpi(ipiRaw: any) {
     rate: ipiSt(Object.values(ipiRaw)[1][0].pIPI),
     amount: ipiSt(Object.values(ipiRaw)[1][0].vIPI),
   };
+}
+
+export async function registerInvoiceByXml(xmlBase64: string) {
+  const invoice = await invoiceByXml(xmlBase64);
+
+  let supplier = await supplierRepo.findByCnpj(invoice.issuer.cnpj);
+
+  if (supplier === null) {
+    supplier = await supplierService.registerByCnpjStateTaxNumber(
+      invoice.issuer.cnpj,
+      invoice.issuer.stateTaxNumber
+    );
+  }
+
+  const existingInvoice = await invoiceRepo.findByAccessKey(invoice.accessKey);
+  if (existingInvoice !== null)
+    throw error.conflict("Invoice already registered");
+
+  const invoiceToDb = {
+    access_key: invoice.accessKey,
+    supplier_id: supplier.id,
+    products_cost: invoice.totals.productAmount,
+    total_cost: invoice.totals.amount,
+    installments_quantity: invoice.duplicates.length,
+    salesperson_id: null,
+  };
+
+  const invoiceInfoToDb = {
+    number: invoice.number,
+    serie: invoice.serie,
+    ipi: invoice.totals.taxes.ipi.amount,
+    icms_st: invoice.totals.taxes.icms.stAmount,
+    fcp_st: invoice.totals.taxes.fcp.stAmount,
+    shipping: invoice.totals.freight.amount,
+    shipper_id: null,
+    discount: invoice.totals.discount.amount,
+    others_expenses: invoice.totals.others.amount,
+    issue_date: invoice.issuedOn,
+    obs: null,
+  };
+
+  await invoiceRepo.insert(invoiceToDb, invoiceInfoToDb);
+
+  return invoice;
 }
